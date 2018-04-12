@@ -136,17 +136,6 @@ one. If there is no listener with that id, do nothing.
   let remove_listener (evt : 'a event) (i : id) : unit =
     evt := List.filter (fun x -> x.id <> (i)) !evt 
 
-(*     let rec helper lst i = 
-    match lst with 
-    | [] -> [] 
-    | hd :: tl -> if hd.id = i then 
-
-  in
-    match !evt with
-    | [] -> ()
-    | hd :: tl -> if hd.id = i then evt := tl 
-                  else evt := hd :: remove_listener tl i  *)
-
 (*......................................................................
 Exercise 3: Write fire_event, which will execute all event handlers
 listening for the event.
@@ -226,7 +215,7 @@ Exercise 8: Create a new event called publish to signal that all
 stories should be published. The event should be a unit WEvent.event.
 ......................................................................*)
 
-let publish = WEvent.new_event () ;; 
+let publish = fun _ -> WEvent.new_event () ;; 
 
 (*......................................................................
 Exercise 9: Write a function receive_report to handle new news
